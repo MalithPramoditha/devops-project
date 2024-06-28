@@ -11,15 +11,15 @@ pipeline {
         }
         stage('Build Backend Docker Image') {
             steps {  
-                dir('api') {
-                    bat 'docker build -t malithpramoditha/devops-backend:%BUILD_NUMBER% .'
+                dir('backend') {
+                    bat 'docker build -t malithpramoditha/devopsbackend:%BUILD_NUMBER% .'
                 }
             }
         }
         stage('Build Frontend Docker Image') {
             steps {
-                dir('client') {
-                    bat 'docker build -t malithpramoditha/devops-frontend:%BUILD_NUMBER% .'
+                dir('frontend') {
+                    bat 'docker build -t malithpramoditha/devopsfrontend:%BUILD_NUMBER% .'
                 }
             }
         }
@@ -34,12 +34,12 @@ pipeline {
         }
         stage('Push Backend Image to Docker Hub') {
             steps {
-                bat 'docker push malithpramoditha/devops-backend:%BUILD_NUMBER%'
+                bat 'docker push malithpramoditha/devopsbackend:%BUILD_NUMBER%'
             }
         }
         stage('Push Frontend Image to Docker Hub') {
             steps {
-                bat 'docker push malithpramoditha/devops-frontend:%BUILD_NUMBER%'
+                bat 'docker push malithpramoditha/devopsfrontend:%BUILD_NUMBER%'
             }
         }
     }
